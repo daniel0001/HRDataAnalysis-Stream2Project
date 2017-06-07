@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HR Data Analytics (from Kaggle)</title>
+  <link rel="stylesheet" href="{{ url_for ('static',
+    filename='lib/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static',
+    filename='lib/css/keen-dashboards.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/dc.css')}}">
+  <link rel="stylesheet" href="{{ url_for ('static', filename='css/custom.css')}}">
+<link rel="stylesheet" href="{{url_for ('static', filename='lib/css/introjs.css')}}" />
+</head>
+<body class="application">
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="./">HR Data Dashboard (Source data from Kaggle)</a>
+      </div>
+      <button class="intro_button" type="button" autofocus onclick="javascript:introJs().start();">Start Tour!</button>
+    </div>
+  </div>
+  <div  id="outer" class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="row">
+          <!-- Time Chart -->
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Satisfaction by average monthly hours
+              </div>
+              <div class="chart-stage">
+                <div id="satisfaction-row-chart" data-step="1" data-intro="The description that you want" style="font-weight: normal" data-position="right"
+></div>
+              </div>
+            </div>
+          </div>
+          <!-- Time Chart -->
+ 
+          <!-- Resources -->
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Last Evaluation
+              </div>
+              <div class="chart-stage">
+                <div id="last-evaluation-row-chart"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Resources -->
+ 
+          <!-- funding Pie -->
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Work Accident Chart
+              </div>
+              <div class="chart-stage">
+                <div id="work-accident-chart"></div>
+              </div>
+            </div>
+          </div>
+          <!-- funding Pie -->
+        </div>
+      </div>
+ 
+      <!-- Poverty -->
+      <div class="col-sm-3">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Average Monthly Hours
+          </div>
+          <div class="chart-stage">
+            <div id="average-monthly-hours-nd"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Poverty -->
+ 
+      <!-- menu select -->
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Time Spend Company
+          </div>
+          <div class="chart-stage">
+            <div id="menu-select"></div>
+          </div>
+        </div>
+      </div>
+      <!-- menu select -->
+ 
+      
+  <script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
+  <script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
+  <script src="{{ url_for ('static', filename='lib/js/crossfilter.js')}}"></script>
+  <script src="{{ url_for ('static', filename='lib/js/d3.js')}}"></script>
+  <script src="{{ url_for ('static', filename='lib/js/dc.js')}}"></script>
+  <script src="{{ url_for ('static', filename='lib/js/queue.js')}}"></script>
+  <script src="{{ url_for ('static', filename='lib/js/keen.min.js')}}"></script>
+  <script src="{{ url_for ('static', filename='js/graph.js')}}"></script>
+  <script src="{{url_for ('static', filename='lib/js/intro.js')}}" type="text/javascript"></script>
+</body>
+</html>
