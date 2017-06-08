@@ -30,7 +30,7 @@ def hrData_projects():
     FIELDS = {
         '_id': False, 'satisfaction_level': True, 'last_evaluation': True,
         'number_project': True, 'average_monthly_hours': True,
-        'time_spend_company': True, 'work_accident': True,
+        'time_spend_company': True, 'Work_accident': True,
         'left': True,
         'promotion_last_5years': True,
         'sales': True,

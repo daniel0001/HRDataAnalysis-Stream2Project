@@ -23,82 +23,74 @@
     <div class="row">
       <div class="col-sm-8">
         <div class="row">
-          <!-- Satisfaction Chart -->
+          <!-- Time Chart -->
           <div class="col-sm-12">
             <div class="chart-wrapper">
               <div class="chart-title">
                 Satisfaction by average monthly hours
               </div>
               <div class="chart-stage">
-                <div id="satisfaction-line-chart" data-step="1" data-intro="The description that you want" style="font-weight: normal" data-position="right"
+                <div id="satisfaction-row-chart" data-step="1" data-intro="The description that you want" style="font-weight: normal" data-position="right"
 ></div>
               </div>
             </div>
           </div>
-          <!-- Satisfaction Chart -->
-          <!-- Last Evaluation -->
-          <div class="col-sm-12">
+          <!-- Time Chart -->
+ 
+          <!-- Resources -->
+          <div class="col-sm-6">
             <div class="chart-wrapper">
               <div class="chart-title">
                 Last Evaluation
               </div>
               <div class="chart-stage">
-                <div id="last-evaluation-line-chart"></div>
-              </div>
-            </div>
-          <!-- Last Evaluation -->
-          <!-- Project Chart -->
-          <div class="col-sm-6">
-            <div class="chart-wrapper">
-              <div class="chart-title">
-                Number of Project's per Staff Member
-              </div>
-              <div class="chart-stage">
-                <div id="project-chart"></div>
+                <div id="last-evaluation-row-chart"></div>
               </div>
             </div>
           </div>
-          <!-- Project Chart -->
-          <!-- Average Monthly Hours -->
+          <!-- Resources -->
+ 
+          <!-- funding Pie -->
           <div class="col-sm-6">
             <div class="chart-wrapper">
               <div class="chart-title">
-                Average Monthly Hours
+                Work Accident Chart
               </div>
               <div class="chart-stage">
-                <div id="average-monthly-hours-chart"></div>
+                <div id="work-accident-chart"></div>
               </div>
             </div>
           </div>
-          <!-- Average Monthly Hours -->
-          <!-- Time with Company -->
-          <div class="col-sm-6">
-            <div class="chart-wrapper">
-              <div class="chart-title">
-                Years with Company
-              </div>
-              <div class="chart-stage">
-                <div id="time-spend-company-chart"></div>
-              </div>
-            </div>
-          </div>
-          <!-- Time with Company -->
-          <!-- Work Accidents -->
-          <div class="col-sm-6">
-            <div class="chart-wrapper">
-              <div class="chart-title">
-                Work Accidents per Staff Member
-              </div>
-              <div class="chart-stage">
-                <div id="workAccident-chart"></div>
-              </div>
-            </div>
-          </div>
-          <!-- Work Accidents -->
+          <!-- funding Pie -->
         </div>
       </div>
-    </div>
- </div>
+ 
+      <!-- Poverty -->
+      <div class="col-sm-3">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Average Monthly Hours
+          </div>
+          <div class="chart-stage">
+            <div id="average-monthly-hours-nd"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Poverty -->
+ 
+      <!-- menu select -->
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Time Spend Company
+          </div>
+          <div class="chart-stage">
+            <div id="menu-select"></div>
+          </div>
+        </div>
+      </div>
+      <!-- menu select -->
+ 
       
   <script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
   <script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
