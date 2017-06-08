@@ -1,18 +1,27 @@
-#number-projects-nd {
-   font-size: 60px;
-}
- 
-#total-donations-nd {
-   font-size: 60px;
-}
- 
- 
- 
  
 .dc-chart g.row text {
    fill: black;
    font-size: 12px;
 }
+.chart-wrapper{
+    box-shadow: 10px 10px 5px #888888;
+    background-color: #D3D3D3;
+    border: 1px black solid;
+}
+.chart-title{
+    background-color: #fff;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+.intro_button{
+    margin-top: 10px;
+    margin-left: 60px;
+    border-radius: 10px;
+    background-color: red;
+    font-weight: bold;
+}
+
  
 #total-projects {
    background: #33CC99;
