@@ -9,6 +9,7 @@ div.dc-chart {
 
 .dc-chart rect.bar:hover {
     fill-opacity: .5;
+    fill: red;
 }
 
 .dc-chart rect.stack1 {
@@ -34,6 +35,7 @@ div.dc-chart {
 
 .dc-chart .pie-slice :hover {
     fill-opacity: .8;
+    fill: red;
 }
 
 .dc-chart .selected path {
@@ -113,6 +115,7 @@ div.dc-chart {
 
 .dc-chart .node :hover {
     fill-opacity: .8;
+    fill: red;
 }
 
 .dc-chart .selected circle {
@@ -157,6 +160,7 @@ div.dc-chart {
 
 .dc-chart g.state :hover {
     fill-opacity: .8;
+    fill: red;
 }
 
 .dc-chart g.state path {
@@ -194,6 +198,7 @@ div.dc-chart {
 
 .dc-chart g.row rect:hover {
     fill-opacity: 0.6;
+    fill: red;
 }
 
 .dc-chart g.row text {

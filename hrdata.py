@@ -33,7 +33,7 @@ def hrData_projects():
         'time_spend_company': True, 'Work_accident': True,
         'left': True,
         'promotion_last_5years': True,
-        'sales': True,
+        'department': True,
         'salary': True
     }
  

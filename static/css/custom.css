@@ -1,10 +1,16 @@
- 
+ body{
+     font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    margin-top: 80px; 
+ }
 .dc-chart g.row text {
    fill: black;
    font-size: 12px;
 }
 .chart-wrapper{
-    box-shadow: 10px 10px 5px #888888;
+    /*box-shadow: 10px 10px 5px #888888;*/
     background-color: #D3D3D3;
     border: 1px black solid;
 }
@@ -15,20 +21,26 @@
     font-weight: bold;
 }
 .intro_button{
-    margin-top: 10px;
+    /*margin-top: 10px;
     margin-left: 60px;
     border-radius: 10px;
     background-color: red;
-    font-weight: bold;
+    font-weight: bold;*/
 }
 
- 
-#total-projects {
-   background: #33CC99;
-   width: 200px;
+#department-chart .x.axis text {
+    text-anchor: end !important;
+    transform: rotate(-45deg);
+}
+
+#totalHeadCount-nd, #totalAccidents-nd {
+ font-family: 'Lato', sans-serif;
+  background: #33CC99;
+   width: 120px;
+   height: 155px;
    position: relative;
-   height: 60px;
-   font-size: 29px;
+   height: 90px;
+   font-size: 40px;
    color: white;
    vertical-align: middle;
    text-align: center;
@@ -51,16 +63,5 @@
  
  
 .dc-select-menu {
-   background: #33CC99;
-   width: 80%;
-   border: none;
-   position: relative;
-   height: 31px;
-   font-size: 15px;
-   color: white;
-   vertical-align: middle;
-   text-align: center;
-   padding-top: 4px;
-   padding-bottom: 0px;
- 
+    width: 300px;
 }

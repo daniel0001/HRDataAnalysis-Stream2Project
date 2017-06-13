@@ -10,43 +10,115 @@
   <link rel="stylesheet" href="{{ url_for ('static', filename='css/custom.css')}}">
 <link rel="stylesheet" href="{{url_for ('static', filename='lib/css/introjs.css')}}" />
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> 
 </head>
 <body class="application">
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-       <img src="{{ url_for ('static', filename='img/hr-logo.png')}}" alt="hr logo" height="50px">
-        <a class="navbar-brand" href="./">HR Data Dashboard (Source data from Kaggle)</a>
+    <div class="container">
+      <div class="row navbar-header">
+        <div class="col-sm-4">
+          <a class="navbar-brand" href="./">HR Data Dashboard (Source data from Kaggle)</a>
+        </div>
+        <div class="col-sm-1">
+          <img src="{{ url_for ('static', filename='img/hr-logo.png')}}" alt="hr logo" height="50px">
+        </div>
+        <div class="col-sm-6">
+           <!-- Department Selector -->
+          <div class="chart-wrapper">
+                <div class="chart-stage">
+                  <div id="menu-select">Department:</div>
+                  <span>
+                  <button class="intro_button" type="button" autofocus onclick="introJs().start()">Start Tour!</button>            
+                  <button class="reset_button" type="button" onclick="dc.filterAll(); dc.renderAll();">Reset All</button>
+                 </span>
+              </div>
+            </div>
+          <!-- Department Selector -->
+           </div>
+        </div>
       </div>
-      <button class="intro_button" type="button" autofocus onclick="javascript:introJs().start();">Start Tour!</button>
     </div>
-  </div>
-  <div  id="outer" class="container-fluid">
+  <div  id="outer" class="container">
     <div class="row">
-         <!-- Satisfaction Chart -->
-          <div class="col-sm-5">
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="col-sm-11">
+        <!-- Total Staff Number Display -->
             <div class="chart-wrapper">
               <div class="chart-title">
-                Satisfaction by average monthly hours
+                Total Staff Headcount
               </div>
               <div class="chart-stage">
-                <div id="satisfaction-line-chart" data-step="1" data-intro="This chart shows job satisfaction levels" style="font-weight: normal" data-position="right"></div>
+                <div id="totalHeadCount-nd">
+                </div>
               </div>
             </div>
           </div>
-          <!-- Satisfaction Chart -->
-          <!-- Last Evaluation -->
-          <div class="col-sm-5">
-            <div class="chart-wrapper">
-              <div class="chart-title">
-                Last Evaluation
-              </div>
-              <div class="chart-stage">
-                <div id="last-evaluation-line-chart" data-step="2" data-intro="This chart shows the staff members last evaluation score" style="font-weight: normal" data-position="right"></div>
+        </div>
+        <!-- Total Staff Number Display -->
+        <div class="row">
+          <div class="col-sm-11">
+          <!-- Total Accidents Number Display -->
+              <div class="chart-wrapper">
+                <div class="chart-title">
+                  Total Accidents
+                </div>
+                <div class="chart-stage">
+                  <div id="totalAccidents-nd">
+                  </div>
+                </div>
               </div>
             </div>
-          <!-- Last Evaluation -->
+          </div>
+       <!-- Total Accidents Number Display -->
+      </div>
+      <div class="col-sm-6">
+        <div class="row">
+        <!-- Department -->
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Department headcount
+              </div>
+              <div class="chart-stage">
+                <div id="department-chart" data-step="9" data-intro="This chart shows the number of promotions the staff member has received in the last 5 years" style="font-weight: normal" data-position="right"></div>
+              </div>
+            </div>
+          </div>
+           <!-- Department -->
         </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="row">
+        <!-- Staff Left -->
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Staff Resignations
+              </div>
+              <div class="chart-stage">
+                <div id="staff-left-chart" data-step="7" data-intro="This chart shows the number of staff that have left the business" style="font-weight: normal" data-position="right"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Staff Left -->
+        </div>
+        <div class="row">
+          <!-- Promotions in last 5 years -->
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Promotions in last 5 year
+              </div>
+              <div class="chart-stage">
+                <div id="promotions-chart" data-step="8" data-intro="This chart shows the number of promotions the staff member has received in the last 5 years" style="font-weight: normal" data-position="right"></div>
+              </div>
+            </div>
+            </div>
+           <!-- Promotions in last 5 years -->
+        </div>
+      </div>
+    </div>
         <div class="row">
           <!-- Project Chart -->
           <div class="col-sm-3">
@@ -61,7 +133,7 @@
           </div>
           <!-- Project Chart -->
           <!-- Average Monthly Hours -->
-          <div class="col-sm-3">
+          <div class="col-sm-6">
             <div class="chart-wrapper">
               <div class="chart-title">
                 Average Monthly Hours
@@ -79,12 +151,39 @@
                 Work Accidents per Staff Member
               </div>
               <div class="chart-stage">
-                <div id="work-accident-chart" data-step="4" data-intro="This chart shows the number of work accidents per staff member" style="font-weight: normal" data-position="right"></div>
+                <div id="work-accident-chart" data-step="5" data-intro="This chart shows the number of work accidents per staff member" style="font-weight: normal" data-position="right"></div>
               </div>
             </div>
           </div>
           <!-- Work Accidents -->
+      </div>
+      <div class="row">
+         <!-- Satisfaction Chart -->
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Satisfaction by staff headcount
+              </div>
+              <div class="chart-stage">
+                <div id="satisfaction-line-chart" data-step="1" data-intro="This chart shows job satisfaction levels" style="font-weight: normal" data-position="right"></div>
+              </div>
+            </div>
+          </div>
+        <!-- Satisfaction Chart -->
+        <!-- Last evaluation Score -->
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Last Evaluation Score
+              </div>
+              <div class="chart-stage">
+                <div id="last-evaluation-line-chart" data-step="1" data-intro="This chart shows job satisfaction levels" style="font-weight: normal" data-position="right"></div>
+              </div>
+            </div>
+          </div>
         </div>
+        <!-- Last evaluation Score -->
+        <div class="row">
           <!-- Time with Company -->
           <div class="col-sm-4">
             <div class="chart-wrapper">
@@ -92,48 +191,38 @@
                 Years with Company
               </div>
               <div class="chart-stage">
-                <div id="time-spend-company-chart" data-step="5" data-intro="This chart shows the number of years the staff member has been with the company" style="font-weight: normal" data-position="right"></div>
+                <div id="time-spend-company-chart" data-step="6" data-intro="This chart shows the number of years the staff member has been with the company" style="font-weight: normal" data-position="right"></div>
               </div>
             </div>
           </div>
           <!-- Time with Company -->
-         
-          <!-- Staff Left -->
-          <div class="col-sm-3">
-            <div class="chart-wrapper">
-              <div class="chart-title">
-                Staff Resignations
-              </div>
-              <div class="chart-stage">
-                <div id="staff-left-chart" data-step="6" data-intro="This chart shows the number of staff that have left the business" style="font-weight: normal" data-position="right"></div>
-              </div>
-            </div>
-          </div>
-          <!-- Staff Left -->
-          <!-- Promotions in last 5 years -->
-          <div class="col-sm-3">
-            <div class="chart-wrapper">
-              <div class="chart-title">
-                Promotions in last 5 year
-              </div>
-              <div class="chart-stage">
-                <div id="promotions-chart" data-step="7" data-intro="This chart shows the number of promotions the staff member has received in the last 5 years" style="font-weight: normal" data-position="right"></div>
-              </div>
-            </div>
-          </div>
-           <!-- Promotions in last 5 years -->
-           <!-- Promotions in last 5 years -->
-          <div class="col-sm-3">
+        </div>
+        <div class="row">
+           <!-- Salary level -->
+          <div class="col-sm-4">
             <div class="chart-wrapper">
               <div class="chart-title">
                 Salary level
               </div>
               <div class="chart-stage">
-                <div id="salary-chart" data-step="7" data-intro="This chart shows the number of promotions the staff member has received in the last 5 years" style="font-weight: normal" data-position="right"></div>
+                <div id="salary-chart" data-step="9" data-intro="This chart shows the number of promotions the staff member has received in the last 5 years" style="font-weight: normal" data-position="right"></div>
               </div>
             </div>
           </div>
-           <!-- Promotions in last 5 years -->
+          <!-- Salary level -->
+           <!-- Average Number of Projects By Department -->
+          <div class="col-sm-8">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Average Number of Projects By Department
+              </div>
+              <div class="chart-stage">
+                <div id="average-projects-by-department-chart" data-step="9" data-intro="This chart shows the number of promotions the staff member has received in the last 5 years" style="font-weight: normal" data-position="right"></div>
+              </div>
+            </div>
+          </div>
+    <!-- Average Number of Projects By Department -->
+        </div>
         </div>
       </div>
  

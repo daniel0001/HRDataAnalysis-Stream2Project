@@ -6,10 +6,13 @@ function makeGraphs(error, projectsJson) {
  
    //Clean projectsJson data
    var hrDataProjects = projectsJson;
+   var total = hrDataProjects.length;
+
 
    //Create a Crossfilter instance
    var ndx = crossfilter (hrDataProjects);
- 
+   
+
    //Define Dimensions
    var satisfactionDim = ndx.dimension(function (d) {
        return d["satisfaction_level"] *100;
@@ -36,9 +39,9 @@ function makeGraphs(error, projectsJson) {
    var promotionLast5YearsDim = ndx.dimension(function (d) {
        return d["promotion_last_5years"];
    });
-//    var departmentDim = ndx.dimension(function (d) {
-//        return d["department"];
-//    });
+   var departmentDim = ndx.dimension(function (d) {
+        return d["department"];
+   });
    var salaryDim = ndx.dimension(function (d) {
        return d["salary"];
    });
@@ -58,8 +61,36 @@ function makeGraphs(error, projectsJson) {
    var numStaffByWorkAccident = workAccidentDim.group();
    var numStaffByleft = staffLeftDim.group();
    var numStaffByPromotionLast5Years = promotionLast5YearsDim.group();
-//    var numStaffByDepartment = departmentDim.group();
+   var numStaffByDepartment = departmentDim.group();
    var numStaffBySalary = salaryDim.group();
+   var numTotalAccidents = workAccidentDim.groupAll().reduceSum(
+        function(d){
+            return d["Work_accident"];
+        }
+    );
+   
+   var averageProjectsByDepartment = departmentDim.group().reduce(
+        function (p, v) {
+            ++p.count;
+            p.total += v.number_project;
+            p.average = p.total / p.count;
+            return p;
+        },
+        function (p, v) {
+            --p.count;
+            if(p.count == 0) {
+                p.total = 0;
+                p.average = 0;
+            } else {
+                p.total -= v.number_project;
+                p.average = p.total / p.count;
+            };
+            return p;
+        },
+        function () {
+            return {count: 0, total: 0, average: 0};
+        }
+    );
    
  
    var all = ndx.groupAll();
@@ -73,109 +104,187 @@ function makeGraphs(error, projectsJson) {
     var workAccidentChart = dc.pieChart("#work-accident-chart");
     var staffLeftChart = dc.pieChart("#staff-left-chart");
     var promotionsLast5YearsChart = dc.pieChart("#promotions-chart");
-//    var departmentChart = dc.pieChart("#department-chart");
-   var salaryChart = dc.barChart("#salary-chart");
-  
+    var salaryChart = dc.barChart("#salary-chart");
+    var departmentChart = dc.barChart("#department-chart");
+    var totalHeadCountND = dc.numberDisplay("#totalHeadCount-nd");
+    var totalAccidentsND = dc.numberDisplay("#totalAccidents-nd");
+    var averageProjectsByDepartmentChart = dc.bubbleChart("#average-projects-by-department-chart");
+    // var compositeChart = dc.compositeChart("#composite-chart")
 
-   satisfactionChart
-       .width(600)
-       .height(250)
-       .dimension(satisfactionDim)
-       .interpolate("basis")
-       .group(numStaffBySatisfaction)
-       .x(d3.scale.linear().domain([5,100]))
-       .transitionDuration(500)
-       .yAxisLabel("Staff Headcount")
-       .xAxisLabel("Satisfaction level (0 - 100%)")
+    totalAccidentsND
+        .formatNumber(d3.format("d"))
+        .valueAccessor(function (d) {
+        return d;
+        })
+        .group(numTotalAccidents)
 
-    lastEvaluationChart
-       .width(600)
-       .height(250)
-       .interpolate("basis")
-       .dimension(lastEvaluationDim)
-       .group(numStaffByLastEvaluation)
-       .x(d3.scale.linear().domain([35,100]))
-       .transitionDuration(500)
-       .yAxisLabel("Staff Headcount")
-       .xAxisLabel("Last Evaluation Score (0 - 100%)")
- 
-   projectChart
-       .height(220)
-       .radius(90)
-       .transitionDuration(1500)
-       .dimension(numberProjectDim)
-       .group(numStaffByNumberProject)
+    selectField = dc.selectMenu('#menu-select')
+        .dimension(departmentDim)
+        .group(numStaffByDepartment)
+        .label("Select a Department")
 
-//    selectField = dc.selectMenu('#menu-select')
-//        .dimension(stateDim)
-//        .group(stateGroup);
- 
-  salaryChart
-        .width(400)
-       .height(250)
-       .dimension(salaryDim)
-       .group(numStaffBySalary) 
-       .x(d3.scale.ordinal())
-       .xUnits(dc.units.ordinal)
-       .transitionDuration(500)
-       .yAxisLabel("Staff Headcount")
-       .xAxisLabel("Salary level")
+    totalHeadCountND
+        .formatNumber(d3.format("d"))
+        .valueAccessor(function (d) {
+        return d;
+        })
+        .group(all)
 
-   averageMonthlyHoursChart
-        .width(400)
-       .height(250)
-       .dimension(averageMonthlyHoursDim)
-       .group(numStaffByAverageMonthlyHours)
-       .x(d3.scale.linear().domain([80,320]))
-       .transitionDuration(500)
-       .yAxisLabel("Staff Headcount")
-       .xAxisLabel("Time")
- 
-   timeSpendCompanyChart
-        .width(600)
-       .height(250)
-       .dimension(timeSpendCompanyDim)
-       .group(numStaffByTimeSpendCompany)
-       .x(d3.scale.linear().domain([0,10]))
-       .transitionDuration(500)
-       .yAxisLabel("Staff Headcount")
-       .xAxisLabel("Time")
- 
-   
- 
- 
-   workAccidentChart
-       .height(220)
-       .radius(90)
-       .transitionDuration(1500)
-       .dimension(workAccidentDim)
-       .group(numStaffByWorkAccident)
-       
-       
-    
+    departmentChart
+        .width(500)
+        .height(300)
+        .margins({top: 20,right: 50,bottom: 70, left: 60})
+        .dimension(departmentDim)
+        .group(numStaffByDepartment)
+        .x(d3.scale.ordinal())
+        .xUnits(dc.units.ordinal)
+        .transitionDuration(500)
+        .yAxisLabel("Staff Headcount")
+        .xAxisLabel("Department")
+        .colors('orange')
+
     staffLeftChart
-       .height(220)
-       .radius(90)
-       .transitionDuration(1500)
-       .dimension(staffLeftDim)
-       .group(numStaffByleft)
+        .height(110)
+        .radius(50)
+        .transitionDuration(1500)
+        .dimension(staffLeftDim)
+        .group(numStaffByleft)
+        .label(function(d) {
+        return Math.round(((d.value / total) * 100)) + '%';
+    })
 
     promotionsLast5YearsChart
-       .height(220)
-       .radius(90)
-       .transitionDuration(1500)
-       .dimension(promotionLast5YearsDim)
-       .group(numStaffByPromotionLast5Years)
+        .height(110)
+        .radius(50)
+        .transitionDuration(1500)
+        .dimension(promotionLast5YearsDim)
+        .group(numStaffByPromotionLast5Years)
+        .label(function(d) {
+        return Math.round((d.value / total) * 100) + '%';
+        })
 
- 
-//    departmentChart
-//        .height(220)
-//        .radius(90)
-//        .innerRadius(40)
-//        .transitionDuration(1500)
-//        .dimension(departmentDim)
-//        .group(all);
 
+    // compositeChart
+    //    .width(600)
+    //    .height(250)
+    //    .x(d3.scale.linear().domain([0,100]))
+    //    .transitionDuration(500)
+    //     .legend(dc.legend().x(100).y(20).itemHeight(13).gap(5))
+    //    .compose([
+    //        dc.lineChart(compositeChart)
+    //        .dimension(satisfactionDim)
+    //        .colors('orange')
+    //        .group(numStaffBySatisfaction, 'Satisfaction')
+    //        .interpolate('basis'),
+    //        dc.lineChart(compositeChart)
+    //        .dimension(lastEvaluationDim)
+    //        .colors('blue')
+    //        .group(numStaffByLastEvaluation, 'Last Evaluation')
+    //        .interpolate('basis')
+    //    ])
+
+
+    projectChart
+        .height(220)
+        .radius(90)
+        .transitionDuration(1500)
+        .dimension(numberProjectDim)
+        .group(numStaffByNumberProject)
+
+    averageMonthlyHoursChart
+        .width(600)
+        .height(250)
+        .margins({top: 20,right: 50,bottom: 30, left: 60})
+        .dimension(averageMonthlyHoursDim)
+        .group(numStaffByAverageMonthlyHours)
+        .x(d3.scale.linear().domain([0,320]))
+        .transitionDuration(500)
+        .yAxisLabel("Staff Headcount")
+        .xAxisLabel("Time")
+        .elasticY(true)
+        .elasticX(true)
+
+    workAccidentChart
+        .height(220)
+        .radius(90)
+        .transitionDuration(1500)
+        .dimension(workAccidentDim)
+        .group(numStaffByWorkAccident)
+        .label(function(d) {
+        return Math.round(((d.value / total) * 100)) + '%';
+    })
+
+    satisfactionChart
+        .width(600)
+        .height(250)
+        .margins({top: 20,right: 50,bottom: 30, left: 60})
+        .x(d3.scale.linear().domain([35,100]))
+        .xAxisLabel("Satisfaction %")
+        .yAxisLabel("Staff Headcount")
+        .transitionDuration(500)
+        .dimension(lastEvaluationDim)
+        .group(numStaffByLastEvaluation, 'Last Evaluation')
+        .interpolate('basis')
+
+    lastEvaluationChart
+        .width(600)
+        .height(250)
+        .margins({top: 20,right: 50,bottom: 30, left: 60})
+        .x(d3.scale.linear().domain([0,100]))
+        .transitionDuration(500)
+        .xAxisLabel("Evaluation %")
+        .yAxisLabel("Staff Headcount")
+        .dimension(satisfactionDim)
+        .group(numStaffBySatisfaction, 'Satisfaction')
+        .interpolate('basis')
+
+    timeSpendCompanyChart
+        .width(400)
+        .height(250)
+        .margins({top: 20,right: 50,bottom: 30, left: 60})
+        .dimension(timeSpendCompanyDim)
+        .group(numStaffByTimeSpendCompany)
+        .x(d3.scale.linear().domain([0,10]))
+        .transitionDuration(500)
+        .yAxisLabel("Staff Headcount")
+        .xAxisLabel("Time")
+        .elasticY(true)
+        .elasticX(true)
+        .brushOn(false)
+
+    salaryChart
+        .width(300)
+        .height(250)
+        .margins({top: 20,right: 50,bottom: 30, left: 60})
+        .dimension(salaryDim)
+        .group(numStaffBySalary) 
+        .x(d3.scale.ordinal())
+        .xUnits(dc.units.ordinal)
+        .transitionDuration(500)
+        .yAxisLabel("Staff Headcount")
+        .xAxisLabel("Salary level")
+        .colors('orange')
+
+    averageProjectsByDepartmentChart
+        .width(990)
+        .height(400)
+        .dimension(departmentDim)
+        .group(averageProjectsByDepartment)
+        .colors(d3.scale.category20())
+        .keyAccessor(function (p) {
+            return p.value.department;
+        })
+        .valueAccessor(function (p) {
+            return p.value.number_project;
+        })
+        .radiusValueAccessor(function (p) {
+            return p.value.average_monthly_hours;
+        })
+        .x(d3.scale.linear().domain([0, 1000]))
+        .r(d3.scale.linear().domain([0, 1000]))
+        .minRadiusWithLabel(15)
+        .renderLabel(true)
+        .renderTitle(true)
 
 
    dc.renderAll();
