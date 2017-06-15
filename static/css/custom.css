@@ -3,17 +3,33 @@
     -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
     text-align: center;
-    margin-top: 80px; 
+    margin-top: 20px;
  }
+
+
+ svg{
+     width: 100%;
+ }
+.dc-chart{
+    width: 100%;
+}
 .dc-chart g.row text {
    fill: black;
    font-size: 12px;
 }
-.chart-wrapper{
-    /*box-shadow: 10px 10px 5px #888888;*/
-    background-color: #D3D3D3;
-    border: 1px black solid;
+#header-logo{
+    margin-top: 10px;
 }
+.navbar-brand{
+    margin: 0px;
+    padding: 0px;
+}
+.chart-wrapper{
+    width: 100%;
+    background-color: #D3D3D3;
+    border: 1px grey solid;
+}
+
 .chart-title{
     background-color: #fff;
     color: black;
@@ -21,47 +37,45 @@
     font-weight: bold;
 }
 .intro_button{
-    /*margin-top: 10px;
-    margin-left: 60px;
-    border-radius: 10px;
+    font-size: 12px;
+    margin-top: 3px;
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: #D3D3D3;
+    font-weight: bold;
+}
+.intro_button:hover{
     background-color: red;
-    font-weight: bold;*/
+}
+.dropdown{
+    margin-top: 10px;
+    width: 500px;
+}
+.dc-select-menu {
+    margin-top: 7px;
+    width: 200px;
 }
 
-#department-chart .x.axis text {
+/*#staff-left-chart svg, #promotions-chart svg, #project-chart svg, #work-accident-chart svg{
+    width: 100%;
+}*/
+
+
+
+#department-chart .x.axis text, #resignations-by-department-headcount-chart .x.axis text {
     text-anchor: end !important;
     transform: rotate(-45deg);
 }
 
 #totalHeadCount-nd, #totalAccidents-nd {
- font-family: 'Lato', sans-serif;
-  background: #33CC99;
-   width: 120px;
-   height: 155px;
-   position: relative;
-   height: 90px;
-   font-size: 40px;
-   color: white;
-   vertical-align: middle;
-   text-align: center;
-   padding-top: 12px;
-   padding-bottom: 0px;
+    font-family: 'Lato', sans-serif;
+    background: #33CC99;
+
+    height: 125px;
+    font-size: 50px;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 30px;
 }
- 
-#net-donations {
-   background: #33CC99;
-   width: 200px;
-   position: relative;
-   height: 60px;
-   font-size: 29px;
-   color: white;
-   vertical-align: middle;
-   text-align: center;
-   padding-top: 12px;
-   padding-bottom: 0px;
-}
- 
- 
-.dc-select-menu {
-    width: 300px;
-}
+

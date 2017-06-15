@@ -16,20 +16,18 @@
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="row navbar-header">
-        <div class="col-sm-4">
-          <a class="navbar-brand" href="./">HR Data Dashboard (Source data from Kaggle)</a>
-        </div>
-        <div class="col-sm-1">
-          <img src="{{ url_for ('static', filename='img/hr-logo.png')}}" alt="hr logo" height="50px">
+        <div class="col-sm-5">
+          <img id="header-logo" src="{{ url_for ('static', filename='img/hr-logo.png')}}" alt="hr logo" height="50px">
+          <a class="navbar-brand" href="./"><h3>HR Data Dashboard</h3></a>
         </div>
         <div class="col-sm-6">
            <!-- Department Selector -->
-          <div class="chart-wrapper">
+          <div class="chart-wrapper dropdown">
                 <div class="chart-stage">
-                  <div id="menu-select">Department:</div>
+                  <div id="menu-select">Department: &nbsp</div>
                   <span>
-                  <button class="intro_button" type="button" autofocus onclick="introJs().start()">Start Tour!</button>            
-                  <button class="reset_button" type="button" onclick="dc.filterAll(); dc.renderAll();">Reset All</button>
+                  <button class="intro_button" type="button" onclick="introJs().start()">Start Tour!</button>            
+                  <button class="intro_button" type="button" onclick="dc.filterAll(); dc.renderAll();">Reset All</button>
                  </span>
               </div>
             </div>
@@ -39,10 +37,11 @@
       </div>
     </div>
   <div  id="outer" class="container">
+    <h6> Q. Why are the valuable staff leaving? &nbsp &nbsp &nbsp (Source data from <a href="https://www.kaggle.com/ludobenistant/hr-analytics">Kaggle</a>. Code at <a href="https://github.com/daniel0001/HRDataAnalysis-Stream2Project">Github.com) <img id="github-logo" src="{{ url_for ('static', filename='img/github.png')}}" alt="github logo" height="20px"></a></h6>
     <div class="row">
       <div class="col-sm-3">
         <div class="row">
-          <div class="col-sm-11">
+          <div class="col-sm-12">
         <!-- Total Staff Number Display -->
             <div class="chart-wrapper">
               <div class="chart-title">
@@ -57,7 +56,7 @@
         </div>
         <!-- Total Staff Number Display -->
         <div class="row">
-          <div class="col-sm-11">
+          <div class="col-sm-12">
           <!-- Total Accidents Number Display -->
               <div class="chart-wrapper">
                 <div class="chart-title">
@@ -184,8 +183,10 @@
         </div>
         <!-- Last evaluation Score -->
         <div class="row">
-          <!-- Time with Company -->
           <div class="col-sm-4">
+            <div class="row">
+          <!-- Time with Company -->
+            <div class="col-sm-12">
             <div class="chart-wrapper">
               <div class="chart-title">
                 Years with Company
@@ -198,8 +199,8 @@
           <!-- Time with Company -->
         </div>
         <div class="row">
-           <!-- Salary level -->
-          <div class="col-sm-4">
+          <!-- Salary level -->
+          <div class="col-sm-12">
             <div class="chart-wrapper">
               <div class="chart-title">
                 Salary level
@@ -210,23 +211,28 @@
             </div>
           </div>
           <!-- Salary level -->
-           <!-- Average Number of Projects By Department -->
+        </div>
+        </div>
+          <!-- Average Number of Resignations by Department Headcount -->
           <div class="col-sm-8">
             <div class="chart-wrapper">
               <div class="chart-title">
-                Average Number of Projects By Department
+                Average Number of Resignations by Department Headcount
               </div>
               <div class="chart-stage">
-                <div id="average-projects-by-department-chart" data-step="9" data-intro="This chart shows the number of promotions the staff member has received in the last 5 years" style="font-weight: normal" data-position="right"></div>
+                <div id="resignations-by-department-headcount-chart" data-step="9" data-intro="This chart shows the number of promotions the staff member has received in the last 5 years" style="font-weight: normal" data-position="right"></div>
               </div>
             </div>
           </div>
-    <!-- Average Number of Projects By Department -->
+          <!-- Average Number of Resignations by Department Headcount -->
+        </div>
+        <div class="row">
+
+
         </div>
         </div>
       </div>
  
-      
   <script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
   <script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
   <script src="{{ url_for ('static', filename='lib/js/crossfilter.js')}}"></script>
