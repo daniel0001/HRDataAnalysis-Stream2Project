@@ -6,7 +6,8 @@ function makeGraphs(error, projectsJson) {
  
    //Clean projectsJson data
    var hrDataProjects = projectsJson;
-   var total = hrDataProjects.length;
+   var total = 0;
+   var data = []
 
    var pieChartWidth = $("#staff-left-chart").width();
    var pieRadius = 30;
@@ -153,8 +154,15 @@ function makeGraphs(error, projectsJson) {
         .radius(document.getElementById('staff-left-chart').clientHeight * 0.3)
         .transitionDuration(1500)
         .dimension(staffLeftDim)
-        .group(numStaffByleft)
+        .group(numStaffByleft) 
         .label(function(d) {
+            
+            if (data.indexOf(d.value) == -1){
+                data.splice(d.value);
+                total += d.value;
+            }
+            console.log(total);
+            console.log(data);
             if (d.key == 0){
                 return Math.round(((d.value / total) * 100)) + '% Resigned';
             }
