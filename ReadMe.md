@@ -36,6 +36,10 @@ There is a 'select' at the top of the page to allow quick manipulation of data b
 
 CSS dashboard template utilised from keen dashboards: https://github.com/keen/dashboards
 
+## Fonts
+
+Google fonts include Roboto and Lato
+
 ## Color scheme
 
 Navbar background: #3d4a57
