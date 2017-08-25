@@ -179,10 +179,16 @@ function makeGraphs(error, projectsJson) {
         .group(numStaffByPromotionLast5Years)
         .label(function(d) {
             if (d.key == 0){
-                return Math.round((d.value / total) * 100) + '% Not promoted';
+                return d.value + '% Not promoted';
             }
-        return Math.round((d.value / total) * 100) + '% Promoted';
+        return d.value + '% Promoted';
         })
+
+        //     if (d.key == 0){
+        //         return Math.round((d.value / total) * 100) + '% Not promoted';
+        //     }
+        // return Math.round((d.value / total) * 100) + '% Promoted';
+        // })
 
 
     // compositeChart
