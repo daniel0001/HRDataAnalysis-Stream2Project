@@ -32,6 +32,14 @@ There is a 'tour button' at the top of the page and this starts a guide to expla
 
 There is a 'select' at the top of the page to allow quick manipulation of data by field.
 
+## CSS template
+
+CSS dashboard template utilised from keen dashboards: https://github.com/keen/dashboards
+
+## Fonts
+
+Google fonts include Roboto and Lato
+
 ## Color scheme
 
 Navbar background: #3d4a57
