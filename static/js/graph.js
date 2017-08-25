@@ -156,19 +156,11 @@ function makeGraphs(error, projectsJson) {
         .dimension(staffLeftDim)
         .group(numStaffByleft) 
         .label(function(d) {
-            
-            if (data.indexOf(d.value) == -1){
-                data.splice(d.value);
-                total += d.value;
-            }
-            console.log(total);
-            console.log(data);
             if (d.key == 0){
-                return Math.round(((d.value / total) * 100)) + '% Resigned';
-            }
-
-        return Math.round(((d.value / total) * 100)) + '% Employed';
-    })
+                return d.value + ' Resigned';
+                }
+            return d.value + ' Employed';
+        })
 
     promotionsLast5YearsChart
         .height(120)
@@ -179,9 +171,9 @@ function makeGraphs(error, projectsJson) {
         .group(numStaffByPromotionLast5Years)
         .label(function(d) {
             if (d.key == 0){
-                return d.value + ' Promoted';
-            }
-        return d.value + ' Not Promoted';
+                return d.value + ' Not Promoted';
+                } 
+            return d.value + ' Promoted'; 
         })
 
 
@@ -239,9 +231,9 @@ function makeGraphs(error, projectsJson) {
         .group(numStaffByWorkAccident)
         .label(function(d) {
             if (d.key == 0){
-                return Math.round(((d.value / total) * 100)) + '% No Accidents';
+                return d.value + ' Had No Accidents';
             }
-        return Math.round((d.value / total) * 100) + '% Accidents';
+        return d.value + ' Had Accidents';
         })
 
     satisfactionChart
