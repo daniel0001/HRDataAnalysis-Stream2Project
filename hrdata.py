@@ -12,8 +12,8 @@ app = Flask(__name__)
 # COLLECTION_NAME = 'projects'
 
 MONGODB_URI = os.environ.get('MONGODB_URI')
-DBS_NAME = os.environ.get('MONGO_DB_NAME', 'hrData')
-COLLECTION_NAME = os.environ.get('MONGO_COLLECTION_NAME', 'projects')
+DBS_NAME = os.environ.get('MONGO_DB_NAME', 'heroku_wf9dc493')
+COLLECTION_NAME = os.environ.get('MONGO_COLLECTION_NAME', 'data')
  
  
 @app.route("/")
