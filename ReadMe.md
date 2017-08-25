@@ -22,16 +22,37 @@ Department
 Salary
 Whether the employee has left
 
+## Design
+
+This dashboard was designed using d3, dc and crossfilter to show the changing relationship of data as it is manipulated by the user.
+
+Bootstrap 3 was used to layout the various tables by row and col. This makes the dashboard responsive to various media screen sizes.
+
+There is a 'tour button' at the top of the page and this starts a guide to explain to the user what each graph's function is.
+
+There is a 'select' at the top of the page to allow quick manipulation of data by field.
+
+## Color scheme
+
+Navbar background: #3d4a57
+chart headings: rgb(102, 102, 102)
+chart text: white
+chart stage: lightgray
+pie-chart: rgb(49,130,189), rgb(107,174,214)
+bar-chart bars: rgb(255,165,0)
+lin-chart lines: rgb(49,130,189)
+nummber display background: rgb(51,204,153)
+
 ## Live Demo
 
 **Follow this link to view deployed version of the web app https://com-dan-dashboard.herokuapp.com/**
 
 ## Built with 
 1. Flask 
-2. Python
-2. HTML
-3. CSS
-4. Bootstrap
+2. Python 3
+2. HTML 5
+3. CSS 3
+4. Bootstrap 3
 5. MongoDB database
 6. JavaScript Libraries:
     * d3.js
